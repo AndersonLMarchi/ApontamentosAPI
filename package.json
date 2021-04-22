@@ -1,0 +1,17 @@
+{
+  "name": "apontamentos",
+  "version": "1.0.0",
+  "description": "API de Apontamentos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "appointments",
+    "node",
+    "typescript"
+  ],
+  "author": "Anderson Luis Marchi",
+  "license": "ISC"
+}
