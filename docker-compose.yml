@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  appointments:
+    build: .
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    command: npm start
+    ports:
+      - 3003:3003
+    volumes:
+      - .:/usr/appointments
+      - /usr/appointments/node_modules
+    environment:
+      NODE_ENV: start
+      PORT: 3003
+  postgres:
+    image: postgres:13
+    ports:
+      - "65432:5432"
+    environment:
+      POSTGRES_USER: ${USER}
+      POSTGRES_PASSWORD: ${PASSWORD}
+      POSTGRES_DB: ${DATABASE}
