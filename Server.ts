@@ -1,53 +1,51 @@
-//import 'reflect-metadata';
-
 import express from 'express';
-import path from 'path';
-import * as bodyParser from 'body-parser';
-import User from './src/types/User';
-import { UserController } from './src/controller/UserController';
+import AppointmentsController from './src/controller/AppointmentController';
+import UserController from './src/controller/UserController';
 
 const port = process.env.PORT || 3003;
 const server = express();
-const defDir = path.join(path.resolve(), './src/view/');
-enum fncts {
-    ADDUSER = 'addUser', // add users
-    ADDAPPT = 'addAppt'  // add appointments
-};
+const router = express.Router();
 
-server.use(bodyParser.json());
-server.use(bodyParser.urlencoded({ extended: true }));
+enum Obj {
+    user = 'user',
+    appointments = 'appoitments'
+}
 
-server.get('/:folder/:file', (req, res) => {
-    let page = '';
-    if (req.params.folder && req.params.file) {
-        page = path.join(defDir, req.params.folder, '/') + req.params.file + '.html';
-    } else {
-        page = defDir + 'index.html';
+router.get('/:object', async (req, res) => {
+    let controller, response;
+    switch (req.params.object) {
+        case Obj.user:     
+            controller = new UserController();
+            response = await controller.getUsers();
+        case Obj.appointments:
+            controller = new AppointmentsController();
+            response = await controller.getAppointments();            
+        default:
+            response = "Opção inválida!";
     }
-    res.sendFile(page);
+
+    return res.send(response);
 });
 
-server.post('/:folder/:file', (req, res) => {
-    if (req.params.file == fncts.ADDUSER) {
-        let user = new User();
-        user.name = req.body.user_name;
-        user.birthday = req.body.user_birth;
+server.get('/:object/:column', (req, res) => {    
 
-        let controller = new UserController();
-        res.send(controller.create(user));
+});
 
-    } else {
+server.post('/:object', (req, res) => {
+});
 
-    }
+server.put('/:object/:id', (req, res) => {
+});
+
+server.delete('/:object/:id', (req, res) => {
 });
 
 server.get('/', (req, res) => {
-    let page = defDir + 'index.html';
-    res.sendFile(page);
+    res.send('Api de Apontamentos 2.0');
 });
 
 server.listen(port, function() {
-    console.log(`Listening running on port ${port}.`);
+    console.log(`API conectada na porta ${port}.`);
 });
 
 export default server;

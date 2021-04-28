@@ -1,24 +1,13 @@
-import { Client, Pool } from 'pg';
-import {} from 'dotenv';
+import { createConnection } from "typeorm";
+import { Appointments, User } from "../entities/Exports";
+import { Database } from "./Types";
 
-// const Connection = new Client({
-//     user: process.env.USER,
-//     host: process.env.HOST,
-//     database: process.env.DATABASE,
-//     password: process.env.PASSWORD,
-//     port: Number(process.env.PORT),
-// });
+export const connectDatabase = async (): Promise<Database> => {
+  const connection = await createConnection();
 
-// const connection = new Client({
-//     connectionString: process.env.DATABASE_URL
-// }).connect();
+  return {
+    appointments: connection.getRepository(Appointments),
+    users: connection.getRepository(User)
+  };
 
-const connection = new Client({
-    connectionString: process.env.DATABASE_URL
-});
-
-// const Connection = new Pool({
-//     connectionString: process.env.DATABASE_URL
-// }).connect();
-
-export default connection;
+};

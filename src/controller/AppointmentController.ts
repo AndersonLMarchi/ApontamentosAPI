@@ -1,83 +1,28 @@
-import Appointments from "../types/Appointments";
-import connection from '../database/Connection';
-import { UserController } from "./UserController";
+import { Appointments, User } from "../entities/Exports";
+import {
+  getAppointments,
+  createAppointments,
+  IAppointmentsPayload,
+  getAppointmentsById,
+  getAppointmentsByUser
+} from "../repositories/AppointmentsRepository";
 
-export class AppointmentController {
+export default class AppointmentsController {
 
-    async findAll(): Promise<Array<Appointments>> {
-        let sql = 'SELECT * FROM app.appointments';
-        let appointments = this.getAppointmentsFromQuery(sql);
-        return appointments;
-    }
-    
-    async findById(id: string): Promise<Array<Appointments>> {
-        let sql = `SELECT * FROM app.user WHERE id = ${id}`;
-        let appointments = this.getAppointmentsFromQuery(sql);
-        return appointments;
-    }
-    
-    async findByDate(date: Date): Promise<Array<Appointments>> {
-        let sql = `SELECT * FROM app.appointments WHERE date = ${date}`;
-        let appointments = this.getAppointmentsFromQuery(sql);
-        return appointments;
-    }
-    
-    async create(appointments: Appointments) {
-        let sql = `INSERT INTO app.appointments (date, iniTime, endTime, userId) 
-                    VALUES (${appointments.date}, ${appointments.iniTime}, 
-                            ${appointments.endTime}, ${appointments.user.id})`;
-        return this.saveUserFromQuery(sql);
-    }
-    
-    async update(appointments: Appointments) {
-        let sql = `UPDATE app.appointments set date = ${appointments.id}, 
-                    iniTime = ${appointments.iniTime}, 
-                    endTime = ${appointments.endTime}, 
-                    userId = ${appointments.user.id}, 
-                    WHERE id = ${appointments.id}`;
-        return this.saveUserFromQuery(sql);        
-    }
+  public async getAppointments(): Promise<Array<Appointments>> {
+    return getAppointments();
+  }
 
-    private saveUserFromQuery(sql: string) {
-        connection.connect();
-        connection.query(sql, [], (err, res) => {
-            connection.end();
-            return (err) 
-                    ? 'Erro ao gravar os dados de Apontamentos: ' + err 
-                    : 'Apontamento gravado com Sucesso!';
-        });
-    }
+  public async createAppointments(body: IAppointmentsPayload): Promise<Appointments> {
+    return createAppointments(body);
+  }
 
-    private getAppointmentsFromQuery(sql: string): Array<Appointments> | any {
+  public async getAppointmentsById(id: string): Promise<Appointments | null> {
+    return getAppointmentsById(id);
+  }
 
-        connection.connect();
-        connection.query(sql, [], (err, res) => {
-            connection.end();            
-            if (err) 
-                throw err; 
-            else 
-                return this.getProcessedArrayAppointments(res.rows);
-        });
-
-    }
-
-    private getProcessedArrayAppointments(rows): Array<Appointments> {
-
-        let userController = new UserController();
-
-        let appointments = Array<Appointments>();
-        for (let row of rows) {
-
-            let appointment = new Appointments(); 
-
-            appointment.id = row.id;
-            appointment.date = row.date;
-            appointment.iniTime = row.iniTime;
-            appointment.endTime = row.endTime;
-            appointment.user = userController.findById(row.userId)[0];
-            appointments.push(appointment);
-        }
-        return appointments;
-    }
+  public async getAppointmentsByUser(user: User): Promise<Appointments | null> {
+    return getAppointmentsByUser(user);
+  }
 
 }
