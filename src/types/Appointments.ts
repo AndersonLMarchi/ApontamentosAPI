@@ -1,10 +1,13 @@
-import { User } from "./User";
+import User from "./User";
 
-export class Appointments {
+class Appointments {
 
+    id: number;
     date: Date;
     iniTime: number;
     endTime: number;
     user: User;
 
 }
+
+export default Appointments;
