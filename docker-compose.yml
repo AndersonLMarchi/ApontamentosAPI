@@ -2,6 +2,7 @@ version: "3"
 
 services:
   appointments:
+    container_name: appointments
     build: .
     depends_on:
       - postgres
@@ -17,10 +18,12 @@ services:
       NODE_ENV: start
       PORT: 3003
   postgres:
+    container_name: postgres
     image: postgres:13
     ports:
       - "65432:5432"
+    env_file: .env
     environment:
-      POSTGRES_USER: ${USER}
-      POSTGRES_PASSWORD: ${PASSWORD}
-      POSTGRES_DB: ${DATABASE}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
