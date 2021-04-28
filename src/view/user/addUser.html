@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=addUser, initial-scale=1.0" />
+    <title>Add new User</title>
+    <style>
+      p {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/user/addUser" method="post">
+      <p>Full name: <input type="text" name="user_name" id="user_name" /></p>
+      <p>Birthday: <input type="date" name="user_birth" id="user_birth" /></p>
+      <p><input type="submit" value="Save" /></p>
+    </form>
+  </body>
+</html>
