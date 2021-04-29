@@ -1,10 +1,12 @@
-import { User } from "../entities/Exports";
+import { User } from "../entities";
 import {
   getUsers,
   createUser,
   IUserPayload,
   getUserById,
-  getUserByName
+  getUserByName,
+  removeUser,
+  updateUser
 } from "../repositories/UserRepository";
 
 export default class UserController {
@@ -17,12 +19,20 @@ export default class UserController {
     return createUser(body);
   }
 
+  public async updateUser(body: IUserPayload): Promise<User> {
+    return updateUser(body);
+  }
+
   public async getUserById(id: string): Promise<User | null> {
     return getUserById(id);
   }
 
   public async getUserByName(name: string): Promise<User | null> {
     return getUserByName(name);
+  }
+
+  public async removeUser(id: string): Promise<User | null> {
+    return removeUser(id);
   }
 
 }

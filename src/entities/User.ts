@@ -9,7 +9,7 @@ export class User {
     @Column({ length: 100 })
     name: string;
 
-    @Column()
+    @Column("date")
     birthday: Date;   
 
 }
