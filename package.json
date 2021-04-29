@@ -4,11 +4,10 @@
   "description": "API de Apontamentos",
   "main": "dist/server.js",
   "scripts": {
-    "start": "nodemon -e ts  --exec \"npm run server\"",
-    "server": "tsc -p . && node dist/server.js ",
-    "server2": "tsc -p . && --exec \"npm run migrate up\" && node dist/server.js ",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "node-pg-migrate"
+    "start:dev": "tsnd --transpile-only --ignore-watch node_modules Server.ts",
+    "build": "tsc -p . ",
+    "start": "node ./dist/server.js ",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "api",
@@ -22,16 +21,13 @@
     "@types/body-parser": "^1.19.0",
     "@types/express": "^4.17.11",
     "@types/node": "^15.0.1",
-    "nodemon": "^2.0.7",
     "tslint": "^5.12.1",
     "typescript": "^4.2.4"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
-    "class-validator": "^0.13.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "node-pg-migrate": "^5.9.0",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.32"

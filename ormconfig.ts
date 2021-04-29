@@ -1,9 +1,10 @@
 import 'dotenv';
+import { ConnectionOptions } from 'typeorm';
 
-export const ORMConfig = {
-  type: process.env.DB_TYPE || 'postgres',
+const ORMConfig: ConnectionOptions = {
+  type: "postgres",
   host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
+  port: Number(process.env.DB_PORT),
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
@@ -17,3 +18,5 @@ export const ORMConfig = {
   dropSchema: false,
   logging: false,
 };
+
+export default ORMConfig;
