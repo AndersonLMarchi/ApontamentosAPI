@@ -1,11 +1,11 @@
 {
   "name": "apontamentos",
   "version": "1.0.0",
-  "description": "API de Apontamentos",
   "type": "module",
+  "description": "API de Apontamentos",
   "main": "server.js",
   "scripts": {
-    "start": "tsc -p . && node ./dist/src/server.js"
+    "start": "tsnd --inspect --transpile-only --ignore-watch node_modules server.ts"
   },
   "keywords": [
     "api",
@@ -19,6 +19,7 @@
     "@types/body-parser": "^1.19.0",
     "@types/express": "^4.17.11",
     "@types/node": "^15.0.1",
+    "ts-node-dev": "^1.1.6",
     "tslint": "^5.12.1",
     "typescript": "^4.2.4"
   },

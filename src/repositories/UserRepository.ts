@@ -38,8 +38,8 @@ export const getUserByName = async (name: string): Promise<User | null> => {
 };
 
 export const removeUser = async (id: string): Promise<User | null> => {
-    let userRepository = getRepository(User);
-    let user = getUserById(id);
-    if (user) return userRepository.remove(user);
+//    let userRepository = getRepository(User);
+//    let user = getUserById(id);
+//   if (user) return userRepository.remove(user);
     return null;
 };

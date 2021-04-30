@@ -43,9 +43,10 @@ export const getAppointmentsByUser = async (user: User): Promise<Appointments | 
     return (!appointments) ? null : appointments;
 };
 
-export const removeAppointment = async (id: string) => {
-    let appointmentsRepository = getRepository(Appointments);
-    let user = getAppointmentsById(id);
-    if (user) return appointmentsRepository.remove(user);
+export const removeAppointment = async (id: string): Promise<Appointments | null> => {
+ //   let appointmentsRepository = getRepository(Appointments);
+    //let appointment = getAppointmentsById(id);
+    //if (appointment) 
+  //  return appointmentsRepository.remove(id);
     return null;
 };
