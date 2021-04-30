@@ -1,8 +1,8 @@
 
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, Timestamp } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./User";
 
-@Entity()
+@Entity("appointments")
 export class Appointments {
 
     @PrimaryGeneratedColumn("uuid")
@@ -12,10 +12,10 @@ export class Appointments {
     date: Date;
 
     @Column("timestamp without time zone")
-    iniTime: Timestamp;
+    iniTime: Date;
 
     @Column("timestamp without time zone")
-    endTime: Timestamp;
+    endTime: Date;
 
     @OneToOne(type => User)
     @JoinColumn()

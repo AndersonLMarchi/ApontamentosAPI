@@ -1,8 +1,8 @@
 import { User } from "../entities";
 import {
+  IUserPayload,
   getUsers,
   createUser,
-  IUserPayload,
   getUserById,
   getUserByName,
   removeUser,

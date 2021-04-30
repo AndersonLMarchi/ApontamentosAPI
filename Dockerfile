@@ -1,17 +1,12 @@
-FROM node:dubnium-alpine
+FROM node:14
 
-RUN apk add --update \
-    curl \
-    && rm -rf /var/cache/apk/*
-
-WORKDIR /usr/appointments
+WORKDIR /apppointments
 
 COPY package*.json ./
+
 RUN npm install
 
 COPY . .
-
-RUN npm run build
 
 EXPOSE 3000
 

@@ -9,19 +9,18 @@ export interface IAppointmentsPayload {
     user: User;
 }
 
-const appointmentsRepository = getRepository(Appointments);
-
 const createUpdate = async (payload: IAppointmentsPayload): Promise<Appointments> => {
-    const appointmentsRepository = getRepository(Appointments);
-    const appointments = new Appointments();
-    return appointmentsRepository.save({
+    let appointmentsRepository = getRepository(Appointments);
+    let appointments = new Appointments();
+    return await appointmentsRepository.save({
         ...appointments,
         ...payload
     });
 };
 
 export const getAppointments = async (): Promise<Array<Appointments>> => {
-    return appointmentsRepository.find();
+    let appointmentsRepository = getRepository(Appointments);
+    return await appointmentsRepository.find();
 };
 
 export const createAppointments = async (payload: IAppointmentsPayload): Promise<Appointments> => {    
@@ -33,17 +32,20 @@ export const updateAppointments = async (payload: IAppointmentsPayload): Promise
 };
 
 export const getAppointmentsById = async (id: string): Promise<Appointments | null> => {
-    const appointments = await appointmentsRepository.findOne({ id: id });
+    let appointmentsRepository = getRepository(Appointments);
+    let appointments = await appointmentsRepository.findOne({ id: id });
     return (!appointments) ? null : appointments;
 };
 
 export const getAppointmentsByUser = async (user: User): Promise<Appointments | null> => {
-    const appointments = await appointmentsRepository.findOne({ user: user });
+    let appointmentsRepository = getRepository(Appointments);
+    let appointments = await appointmentsRepository.findOne({ user: user });
     return (!appointments) ? null : appointments;
 };
 
-export const removeAppointment = async (id: string): Promise<Appointments | null> => {
-    let user = getAppointmentsById(id)[0];
-    if (user) return appointmentsRepository.remove(user)[0];
+export const removeAppointment = async (id: string) => {
+    let appointmentsRepository = getRepository(Appointments);
+    let user = getAppointmentsById(id);
+    if (user) return appointmentsRepository.remove(user);
     return null;
 };

@@ -8,16 +8,20 @@ services:
       - postgres
     links:
       - postgres
-    command: npm run start:dev
+    command: npm run start
     ports:
       - 3003:3003
-      - 9229:9229
     volumes:
-      - .:/usr/appointments
-      - /usr/appointments/node_modules
+      - .:/appointments
+      - /appointments/node_modules
+    env_file: .env.dev
     environment:
       NODE_ENV: dev
       PORT: 3003
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_HOST: ${DB_HOST}
   postgres:
     container_name: postgres
     image: postgres:13

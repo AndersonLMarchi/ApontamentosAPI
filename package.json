@@ -2,12 +2,10 @@
   "name": "apontamentos",
   "version": "1.0.0",
   "description": "API de Apontamentos",
-  "main": "dist/server.js",
+  "type": "module",
+  "main": "server.js",
   "scripts": {
-    "start:dev": "tsnd --transpile-only --ignore-watch node_modules Server.ts",
-    "build": "tsc -p . ",
-    "start": "node ./dist/server.js ",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc -p . && node ./dist/src/server.js"
   },
   "keywords": [
     "api",

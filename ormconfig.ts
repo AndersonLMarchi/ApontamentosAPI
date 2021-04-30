@@ -1,22 +1,23 @@
-import 'dotenv';
-import { ConnectionOptions } from 'typeorm';
+import "dotenv";
+import { ConnectionOptions } from "typeorm";
 
-const ORMConfig: ConnectionOptions = {
+const config: ConnectionOptions = {
+  name: "default",
   type: "postgres",
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  migrations: ['./src/migrations/**/*.ts'],
-  entities: ['./src/entities/**/*.ts'],
+  migrations: ["./src/migrations/**/*.ts"],
+  entities: ["./src/entities/**/*.ts"],
   cli: {
-    migrationsDir: './dist/src/migrations',
-    entitiesDir: './dist/src/entities'
+    migrationsDir: "./dist/src/migrations",
+    entitiesDir: "./dist/src/entities"
   },
   synchronize: false,
   dropSchema: false,
   logging: false,
 };
 
-export default ORMConfig;
+export default config;
