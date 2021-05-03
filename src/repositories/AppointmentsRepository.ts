@@ -37,10 +37,17 @@ export const getAppointmentsById = async (id: string): Promise<Appointments | nu
     return (!appointments) ? null : appointments;
 };
 
-export const getAppointmentsByUser = async (user: User): Promise<Appointments | null> => {
+export const getAppointmentsByUser = async (id: string): Promise<Array<Appointments> | null> => {
     let appointmentsRepository = getRepository(Appointments);
-    let appointments = await appointmentsRepository.findOne({ user: user });
-    return (!appointments) ? null : appointments;
+    let appoitmentsByUser = await appointmentsRepository.find({ 
+            where: { 
+                user: { 
+                    id: id 
+                } 
+            }, 
+            relations: ['user'] 
+        });
+    return appoitmentsByUser;
 };
 
 export const removeAppointment = async (id: string): Promise<Appointments | boolean> => {

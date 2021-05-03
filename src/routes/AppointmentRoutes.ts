@@ -17,6 +17,14 @@ router.get("/:id", async (req, res) => {
     res.json(response);
 });
 
+router.get(':userId', async (req, res) => {
+    let response = await controller.getAppointmentsByUser(req.params.userId);
+    if (!response) {
+        res.status(404).json({ message: `Não foram encontrados apontamentos para o Usuário com ID ${req.params.id}!` });
+    }
+    res.json(response);    
+});
+
 router.post("/", async (req, res) => {
     let response = await controller.createAppointments(req.body);
     res.json(response);

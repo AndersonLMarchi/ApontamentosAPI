@@ -27,8 +27,8 @@ export default class AppointmentsController {
     return getAppointmentsById(id);
   }
 
-  public async getAppointmentsByUser(user: User): Promise<Appointments | null> {
-    return getAppointmentsByUser(user);
+  public async getAppointmentsByUser(id: string): Promise<Array<Appointments> | null> {
+    return getAppointmentsByUser(id);
   }
 
   public async removeAppointment(id: string): Promise<Appointments | boolean> {
