@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "API de Apontamentos",
-  "main": "server.js",
+  "main": "server.ts",
   "scripts": {
     "start": "tsnd --inspect --transpile-only --ignore-watch node_modules server.ts"
   },

@@ -1,5 +1,5 @@
 import { ConnectionOptions } from "typeorm";
-import { Appointments, User } from "./src/entities/index";
+import { Appointments, User } from "./src/entities";
 
 const config: ConnectionOptions = {
   type: "postgres",
