@@ -37,9 +37,8 @@ export const getUserByName = async (name: string): Promise<User | null> => {
     return (!user) ? null : user;
 };
 
-export const removeUser = async (id: string): Promise<User | null> => {
-//    let userRepository = getRepository(User);
-//    let user = getUserById(id);
-//   if (user) return userRepository.remove(user);
-    return null;
+export const removeUser = async (id: string): Promise<User | boolean> => {
+    let userRepository = getRepository(User);
+    let deleted = await userRepository.delete({ id });
+    return deleted.raw;
 };

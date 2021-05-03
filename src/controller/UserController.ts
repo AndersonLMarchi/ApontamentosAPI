@@ -31,7 +31,7 @@ export default class UserController {
     return getUserByName(name);
   }
 
-  public async removeUser(id: string): Promise<User | null> {
+  public async removeUser(id: string): Promise<User | boolean> {
     return removeUser(id);
   }
 

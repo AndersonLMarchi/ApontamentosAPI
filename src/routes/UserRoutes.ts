@@ -6,30 +6,30 @@ const controller = new UserController();
 
 router.get("/", async (req, res) => {
     let response = await controller.getUsers();
-    res.send(response);
+    res.json(response);
 });
 
 router.get("/:id", async (req, res) => {
     let response = await controller.getUserById(req.params.id);
     if (!response) {
-        res.status(404).send({ message: `Usuário com o ID ${req.params.id} não encontrado!` });
+        res.status(404).json({ message: `Usuário com o ID ${req.params.id} não encontrado!` });
     }
-    res.send(response);
+    res.json(response);
 });
 
 router.post("/", async (req, res) => {
     let response = await controller.createUser(req.body);
-    res.send(response);
+    res.json(response);
 });
 
 router.put("/", async (req, res) => {
     let response = await controller.updateUser(req.body);
-    res.send(response);
+    res.json(response);
 });
 
 router.delete("/:id", async (req, res) => {
     let response = await controller.removeUser(req.params.id);
-    res.send(response);
+    res.json(response);
 });
 
 export default router;

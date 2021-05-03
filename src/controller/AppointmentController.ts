@@ -31,7 +31,7 @@ export default class AppointmentsController {
     return getAppointmentsByUser(user);
   }
 
-  public async removeAppointment(id: string): Promise<Appointments | null> {
+  public async removeAppointment(id: string): Promise<Appointments | boolean> {
     return removeAppointment(id);
   }
 

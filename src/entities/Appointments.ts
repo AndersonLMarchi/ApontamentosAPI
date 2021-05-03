@@ -1,5 +1,5 @@
 
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./User";
 
 @Entity("appointments")
@@ -17,7 +17,7 @@ export class Appointments {
     @Column("timestamp without time zone")
     endTime: Date;
 
-    @OneToOne(type => User)
+    @ManyToOne(type => User)
     @JoinColumn()
     user: User;
 

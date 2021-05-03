@@ -43,10 +43,8 @@ export const getAppointmentsByUser = async (user: User): Promise<Appointments | 
     return (!appointments) ? null : appointments;
 };
 
-export const removeAppointment = async (id: string): Promise<Appointments | null> => {
- //   let appointmentsRepository = getRepository(Appointments);
-    //let appointment = getAppointmentsById(id);
-    //if (appointment) 
-  //  return appointmentsRepository.remove(id);
-    return null;
+export const removeAppointment = async (id: string): Promise<Appointments | boolean> => {
+  let appointmentsRepository = getRepository(Appointments);
+  let deleted = await appointmentsRepository.delete({ id });
+  return deleted.raw;
 };

@@ -6,30 +6,30 @@ const controller = new AppointmentsController();
 
 router.get("/", async (req, res) => {
     let response = await controller.getAppointments();
-    res.send(response);
+    res.json(response);
 });
 
 router.get("/:id", async (req, res) => {
     let response = await controller.getAppointmentsById(req.params.id);
     if (!response) {
-        res.status(404).send({ message: `Apontamento com o ID ${req.params.id} não encontrado!` });
+        res.status(404).json({ message: `Apontamento com o ID ${req.params.id} não encontrado!` });
     }
-    res.send(response);
+    res.json(response);
 });
 
 router.post("/", async (req, res) => {
     let response = await controller.createAppointments(req.body);
-    res.send(response);
+    res.json(response);
 });
 
 router.put("/", async (req, res) => {
     let response = await controller.updateAppointments(req.body);
-    res.send(response);
+    res.json(response);
 });
 
 router.delete("/:id", async (req, res) => {
     let response = await controller.removeAppointment(req.params.id);
-    res.send(response);
+    res.json(response);
 });
 
 export default router;
