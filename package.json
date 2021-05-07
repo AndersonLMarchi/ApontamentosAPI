@@ -5,7 +5,8 @@
   "description": "API de Apontamentos",
   "main": "server.ts",
   "scripts": {
-    "start": "tsnd --inspect --transpile-only --ignore-watch node_modules server.ts"
+    "start": "tsoa spec && tsnd --inspect --transpile-only --ignore-watch node_modules server.ts",
+    "swagger": "tsoa spec"
   },
   "keywords": [
     "api",
@@ -19,6 +20,7 @@
     "@types/body-parser": "^1.19.0",
     "@types/express": "^4.17.11",
     "@types/node": "^15.0.1",
+    "@types/swagger-ui-express": "^4.1.2",
     "ts-node-dev": "^1.1.6",
     "tslint": "^5.12.1",
     "typescript": "^4.2.4"
@@ -29,6 +31,8 @@
     "express": "^4.17.1",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
+    "swagger-ui-express": "^4.1.6",
+    "tsoa": "^3.7.0",
     "typeorm": "^0.2.32"
   }
 }

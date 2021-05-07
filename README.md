@@ -2,9 +2,14 @@
 
 Desenvolvimento da API para controle de Apontamentos de Usuários. Essa aplicação pode ser usada para marcação de dados de tempos que determinados usuários utilizam para realização de qualquer tarefa.
 
+## Documentação
+
+Adicionado SwaggerUI para apresentação da API de Apontamentos, é só utilizar o endpoint `bash /docs ` no navegador.
+
 ## Dependências
 
 Para esse projeto são necessários a instalação das seguintes dependências:
+
 - Node: Download disponível [aqui](https://nodejs.org/en/download/).
 - Docker: Download disponível [aqui](https://www.docker.com/products/docker-desktop).
 
@@ -17,9 +22,11 @@ docker-compose up
 ```
 
 ## Contribuição
+
 Toda e qualquer contribuição é bem vinda. Para alterações maiores e bug/erros favor incluir uma issue [nesse endereço](https://github.com/andersonlmarchi/ApontamentosAPI/issues) que estarei verificando.
 
 ## Licença
+
 Copyright 2021 Anderson Luis Marchi
 
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.

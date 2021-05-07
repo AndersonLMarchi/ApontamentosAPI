@@ -1,3 +1,4 @@
+import { Body, Get, Post, Delete, Tags, Path, Put, Route } from "tsoa";
 import { User } from "../entities";
 import {
   IUserPayload,
@@ -8,22 +9,27 @@ import {
   removeUser,
   updateUser
 } from "../repositories/UserRepository";
-
+@Route("users")
+@Tags("User")
 export default class UserController {
 
+  @Get("/")
   public async getUsers(): Promise<Array<User>> {
     return getUsers();
   }
 
-  public async createUser(body: IUserPayload): Promise<User> {
+  @Post("/")
+  public async createUser(@Body() body: IUserPayload): Promise<User> {
     return createUser(body);
   }
 
-  public async updateUser(body: IUserPayload): Promise<User> {
+  @Put("/")
+  public async updateUser(@Body() body: IUserPayload): Promise<User> {
     return updateUser(body);
   }
 
-  public async getUserById(id: string): Promise<User | null> {
+  @Get("/:id")
+  public async getUserById(@Path() id: string): Promise<User | null> {
     return getUserById(id);
   }
 
@@ -31,7 +37,8 @@ export default class UserController {
     return getUserByName(name);
   }
 
-  public async removeUser(id: string): Promise<User | boolean> {
+  @Delete("/:id")
+  public async removeUser(@Path() id: string): Promise<User | boolean> {
     return removeUser(id);
   }
 

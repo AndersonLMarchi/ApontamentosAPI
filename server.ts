@@ -1,5 +1,6 @@
 import express, { Application } from "express";
 import { createConnection } from "typeorm";
+import swaggerUi from "swagger-ui-express";
 import config from "./ormconfig";
 import Router from "./src/routes";
 
@@ -7,6 +8,14 @@ const port = process.env.PORT || 3003;
 const server = express();
 
 server.use(express.json());
+server.use(express.static("dist"));
+server.use('/docs', swaggerUi.serve, 
+      swaggerUi.setup(undefined, {
+        swaggerOptions: {
+          url: "/swagger.json"
+        }
+      })
+);
 server.use(Router);
 
 server.get('/', (req, res) => {
