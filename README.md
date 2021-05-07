@@ -4,7 +4,7 @@ Desenvolvimento da API para controle de Apontamentos de Usuários. Essa aplicaç
 
 ## Documentação
 
-Adicionado SwaggerUI para apresentação da API de Apontamentos, é só utilizar o endpoint `bash /docs ` no navegador.
+Adicionado SwaggerUI para apresentação da API de Apontamentos, é só utilizar o endpoint ` /docs ` no navegador.
 
 ## Dependências
 
